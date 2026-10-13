@@ -6,7 +6,7 @@ Pake wraps the Remember The Milk web app in a lightweight native window (Tauri +
 
 ## Platform
 
-- macOS, universal binary (Apple Silicon and Intel)
+- macOS, Apple Silicon only
 
 ## Installation
 
