@@ -50,8 +50,7 @@ jobs:
           pake "$APP_URL" \
             --name "$APP_NAME" \
             --app-version "${{ steps.version.outputs.version }}" \
-            --targets apple \
-            --no-restore-last-url
+            --targets apple
 
       - name: Rename DMG
         id: dmg
