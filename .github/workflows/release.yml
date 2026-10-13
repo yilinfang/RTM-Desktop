@@ -15,13 +15,21 @@ jobs:
     env:
       APP_NAME: RTM
       APP_URL: https://www.rememberthemilk.com/app/
+      PAKE_VERSION: 3.17.3
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
       - name: Get version from tag
         id: version
-        run: echo "version=${GITHUB_REF_NAME#v}" >> "$GITHUB_OUTPUT"
+        run: |
+          version="${GITHUB_REF_NAME#v}"
+          # Date version YYYY.M.D without leading zeros, so it stays valid semver for Tauri
+          if ! [[ "$version" =~ ^[0-9]{4}\.[1-9][0-9]?\.[1-9][0-9]?$ ]]; then
+            echo "Tag must be vYYYY.M.D without leading zeros (e.g. v2026.10.12), got: $GITHUB_REF_NAME" >&2
+            exit 1
+          fi
+          echo "version=$version" >> "$GITHUB_OUTPUT"
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -34,7 +42,7 @@ jobs:
           targets: aarch64-apple-darwin
 
       - name: Install Pake CLI
-        run: npm install -g pake-cli
+        run: npm install -g "pake-cli@$PAKE_VERSION"
 
       - name: Build app
         run: |
@@ -55,8 +63,27 @@ jobs:
           mv "$src" "$dest"
           echo "path=$dest" >> "$GITHUB_OUTPUT"
 
+      - name: Write release notes
+        id: notes
+        run: |
+          notes="$RUNNER_TEMP/release-notes.md"
+          {
+            echo "## Build info"
+            echo
+            echo "| | |"
+            echo "|---|---|"
+            echo "| Build time | $(date -u '+%Y-%m-%d %H:%M UTC') |"
+            echo "| Pake | V${PAKE_VERSION} |"
+            echo "| Commit | ${GITHUB_SHA::7} |"
+            echo "| Rust | $(rustc --version | cut -d' ' -f2) |"
+            echo "| Node.js | $(node --version) |"
+            echo "| macOS runner | $(sw_vers -productVersion) |"
+          } > "$notes"
+          echo "path=$notes" >> "$GITHUB_OUTPUT"
+
       - name: Publish release
         uses: softprops/action-gh-release@v2
         with:
           files: ${{ steps.dmg.outputs.path }}
+          body_path: ${{ steps.notes.outputs.path }}
           generate_release_notes: true
