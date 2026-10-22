@@ -1,6 +1,6 @@
 {
   "url": "https://www.rememberthemilk.com/app/",
   "name": "RTM",
-  "hideOnClose": false,
+  "hideOnClose": true,
   "restoreLastUrl": false
 }
