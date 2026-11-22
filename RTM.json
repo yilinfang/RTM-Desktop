@@ -4,7 +4,6 @@
   "hideOnClose": true,
   "restoreLastUrl": false,
   "inject": [
-    "./inject/darkreader.js",
     "./inject/dark.js"
   ]
 }
