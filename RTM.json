@@ -2,5 +2,9 @@
   "url": "https://www.rememberthemilk.com/app/",
   "name": "RTM",
   "hideOnClose": true,
-  "restoreLastUrl": false
+  "restoreLastUrl": false,
+  "inject": [
+    "./inject/darkreader.js",
+    "./inject/dark.js"
+  ]
 }

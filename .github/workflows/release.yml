@@ -71,6 +71,7 @@ jobs:
             echo "|---|---|"
             echo "| Build time | $(date -u '+%Y-%m-%d %H:%M UTC') |"
             echo "| Pake | V$(cat pake-version.txt) |"
+            echo "| Dark Reader | V$(sed -n 's/^ \* Dark Reader v//p' inject/darkreader.js) |"
             echo "| Config | [RTM.json](${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/blob/${GITHUB_SHA}/RTM.json) |"
             echo "| Commit | ${GITHUB_SHA::7} |"
             echo "| Rust | $(rustc --version | cut -d' ' -f2) |"

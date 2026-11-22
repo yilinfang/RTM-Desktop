@@ -6,6 +6,10 @@ An unofficial macOS desktop client for [Remember The Milk](https://www.remembert
 
 - macOS, Apple Silicon only
 
+## Dark mode
+
+The app injects [Dark Reader](https://darkreader.org/) (MIT) into the page. It follows the macOS appearance setting. The script is vendored at `inject/darkreader.js` (license in `inject/darkreader.LICENSE`). The settings are in `inject/dark.js`.
+
 ## Installation
 
 1. Download the `.dmg` and open it.
