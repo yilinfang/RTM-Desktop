@@ -8,7 +8,7 @@ An unofficial macOS desktop client for [Remember The Milk](https://www.remembert
 
 ## Dark mode
 
-The app injects [Dark Reader](https://darkreader.org/) (MIT) into the page. It follows the macOS appearance setting. `inject/dark.js` loads it from jsDelivr with a pinned version and an integrity hash, and holds the settings.
+The app injects [Dark Reader](https://darkreader.org/) (MIT) into the page and follows the macOS appearance setting.
 
 ## Installation
 
