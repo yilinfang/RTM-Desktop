@@ -6,9 +6,9 @@ An unofficial macOS desktop client for [Remember The Milk](https://www.remembert
 
 - macOS, Apple Silicon only
 
-## Dark mode
+## Dark Mode
 
-The app injects [Dark Reader](https://darkreader.org/) (MIT) into the page and follows the macOS appearance setting.
+Dark mode is provided by [Dark Reader](https://darkreader.org/) (MIT) and automatically follows the macOS appearance setting.
 
 ## Installation
 
