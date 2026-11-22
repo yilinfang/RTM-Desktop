@@ -3,7 +3,5 @@
   "name": "RTM",
   "hideOnClose": true,
   "restoreLastUrl": false,
-  "inject": [
-    "./inject/dark.js"
-  ]
+  "inject": ["./inject/dark.js"]
 }
